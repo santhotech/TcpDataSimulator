@@ -17,10 +17,12 @@ namespace DataSimulator
 {
     public partial class Form1 : Form
     {
+        Methods val;
         public Form1()
         {
             InitializeComponent();
             DrawHeightsForList();
+            val = new Methods();
         }
 
         private void DrawHeightsForList()
@@ -31,6 +33,30 @@ namespace DataSimulator
             simList.SmallImageList = HeightControlImageList;     
         }
 
+        
+
+        private void strtBtn_Click(object sender, EventArgs e)
+        {
+            string[] txtboxStr = new string[] { simNameTxt.Text, prtTxt.Text, delayTxt.Text, fldrNameTxt.Text };
+            ValidateLogger(txtboxStr);      
+        }
+
+        private void Error(string msg)
+        {
+            MessageBox.Show(msg, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }   
+
+        private void ValidateLogger(string[] sc)
+        {
+            if (!(val.ValidateForm(sc)))
+            {
+                Error("Enter all the fields");
+            }           
+            else
+            {               
+                AddLogger(sc);
+            }
+        }
       
     }
 }

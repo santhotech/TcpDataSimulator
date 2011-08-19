@@ -175,6 +175,7 @@
             this.strtBtn.TabIndex = 6;
             this.strtBtn.Text = "Add Logger";
             this.strtBtn.UseVisualStyleBackColor = true;
+            this.strtBtn.Click += new System.EventHandler(this.strtBtn_Click);
             // 
             // label6
             // 
