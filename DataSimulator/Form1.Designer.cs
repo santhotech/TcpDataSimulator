@@ -32,7 +32,7 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.simList = new System.Windows.Forms.GroupBox();
+            this.grpList = new System.Windows.Forms.GroupBox();
             this.pingRequest = new System.Windows.Forms.CheckBox();
             this.delayTxt = new System.Windows.Forms.NumericUpDown();
             this.fldrBrwsBtn = new System.Windows.Forms.Button();
@@ -46,6 +46,12 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.simList = new DataSimulator.ListViewEx();
+            this.columnHeader13 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader14 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader15 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader16 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader17 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -60,15 +66,9 @@
             this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader12 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.listViewEx1 = new DataSimulator.ListViewEx();
-            this.columnHeader13 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader14 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader15 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader16 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader17 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
-            this.simList.SuspendLayout();
+            this.grpList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.delayTxt)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -96,35 +96,35 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.panel1.Controls.Add(this.simList);
+            this.panel1.Controls.Add(this.grpList);
             this.panel1.Controls.Add(this.groupBox1);
             this.panel1.Location = new System.Drawing.Point(3, 74);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(801, 239);
             this.panel1.TabIndex = 2;
             // 
-            // simList
+            // grpList
             // 
-            this.simList.Controls.Add(this.pingRequest);
-            this.simList.Controls.Add(this.delayTxt);
-            this.simList.Controls.Add(this.fldrBrwsBtn);
-            this.simList.Controls.Add(this.strtBtn);
-            this.simList.Controls.Add(this.label6);
-            this.simList.Controls.Add(this.prtTxt);
-            this.simList.Controls.Add(this.label3);
-            this.simList.Controls.Add(this.fldrNameTxt);
-            this.simList.Controls.Add(this.simNameTxt);
-            this.simList.Controls.Add(this.label5);
-            this.simList.Controls.Add(this.label4);
-            this.simList.Controls.Add(this.label7);
-            this.simList.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.simList.ForeColor = System.Drawing.Color.SteelBlue;
-            this.simList.Location = new System.Drawing.Point(536, 3);
-            this.simList.Name = "simList";
-            this.simList.Size = new System.Drawing.Size(256, 226);
-            this.simList.TabIndex = 0;
-            this.simList.TabStop = false;
-            this.simList.Text = "Add New Simulator";
+            this.grpList.Controls.Add(this.pingRequest);
+            this.grpList.Controls.Add(this.delayTxt);
+            this.grpList.Controls.Add(this.fldrBrwsBtn);
+            this.grpList.Controls.Add(this.strtBtn);
+            this.grpList.Controls.Add(this.label6);
+            this.grpList.Controls.Add(this.prtTxt);
+            this.grpList.Controls.Add(this.label3);
+            this.grpList.Controls.Add(this.fldrNameTxt);
+            this.grpList.Controls.Add(this.simNameTxt);
+            this.grpList.Controls.Add(this.label5);
+            this.grpList.Controls.Add(this.label4);
+            this.grpList.Controls.Add(this.label7);
+            this.grpList.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grpList.ForeColor = System.Drawing.Color.SteelBlue;
+            this.grpList.Location = new System.Drawing.Point(536, 3);
+            this.grpList.Name = "grpList";
+            this.grpList.Size = new System.Drawing.Size(256, 226);
+            this.grpList.TabIndex = 0;
+            this.grpList.TabStop = false;
+            this.grpList.Text = "Add New Simulator";
             // 
             // pingRequest
             // 
@@ -260,7 +260,7 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.listViewEx1);
+            this.groupBox1.Controls.Add(this.simList);
             this.groupBox1.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.ForeColor = System.Drawing.Color.SteelBlue;
             this.groupBox1.Location = new System.Drawing.Point(4, 3);
@@ -269,6 +269,46 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Current Simulators";
+            // 
+            // simList
+            // 
+            this.simList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader13,
+            this.columnHeader14,
+            this.columnHeader15,
+            this.columnHeader16,
+            this.columnHeader17});
+            this.simList.Location = new System.Drawing.Point(6, 16);
+            this.simList.Name = "simList";
+            this.simList.Size = new System.Drawing.Size(514, 204);
+            this.simList.TabIndex = 0;
+            this.simList.UseCompatibleStateImageBehavior = false;
+            this.simList.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader13
+            // 
+            this.columnHeader13.Text = "Name";
+            this.columnHeader13.Width = 100;
+            // 
+            // columnHeader14
+            // 
+            this.columnHeader14.Text = "Port";
+            this.columnHeader14.Width = 100;
+            // 
+            // columnHeader15
+            // 
+            this.columnHeader15.Text = "Delay";
+            this.columnHeader15.Width = 100;
+            // 
+            // columnHeader16
+            // 
+            this.columnHeader16.Text = "Log File";
+            this.columnHeader16.Width = 100;
+            // 
+            // columnHeader17
+            // 
+            this.columnHeader17.Text = "Control";
+            this.columnHeader17.Width = 110;
             // 
             // columnHeader1
             // 
@@ -330,46 +370,6 @@
             this.columnHeader12.Text = "";
             this.columnHeader12.Width = 80;
             // 
-            // listViewEx1
-            // 
-            this.listViewEx1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader13,
-            this.columnHeader14,
-            this.columnHeader15,
-            this.columnHeader16,
-            this.columnHeader17});
-            this.listViewEx1.Location = new System.Drawing.Point(6, 16);
-            this.listViewEx1.Name = "listViewEx1";
-            this.listViewEx1.Size = new System.Drawing.Size(514, 204);
-            this.listViewEx1.TabIndex = 0;
-            this.listViewEx1.UseCompatibleStateImageBehavior = false;
-            this.listViewEx1.View = System.Windows.Forms.View.Details;
-            // 
-            // columnHeader13
-            // 
-            this.columnHeader13.Text = "Name";
-            this.columnHeader13.Width = 100;
-            // 
-            // columnHeader14
-            // 
-            this.columnHeader14.Text = "Port";
-            this.columnHeader14.Width = 100;
-            // 
-            // columnHeader15
-            // 
-            this.columnHeader15.Text = "Delay";
-            this.columnHeader15.Width = 100;
-            // 
-            // columnHeader16
-            // 
-            this.columnHeader16.Text = "Log File";
-            this.columnHeader16.Width = 100;
-            // 
-            // columnHeader17
-            // 
-            this.columnHeader17.Text = "Control";
-            this.columnHeader17.Width = 110;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -382,8 +382,8 @@
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.panel1.ResumeLayout(false);
-            this.simList.ResumeLayout(false);
-            this.simList.PerformLayout();
+            this.grpList.ResumeLayout(false);
+            this.grpList.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.delayTxt)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -395,7 +395,7 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.GroupBox simList;
+        private System.Windows.Forms.GroupBox grpList;
         private System.Windows.Forms.CheckBox pingRequest;
         private System.Windows.Forms.NumericUpDown delayTxt;
         private System.Windows.Forms.Button fldrBrwsBtn;
@@ -409,7 +409,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.GroupBox groupBox1;
-        private ListViewEx listViewEx1;
+        private ListViewEx simList;
         private System.Windows.Forms.ColumnHeader columnHeader13;
         private System.Windows.Forms.ColumnHeader columnHeader14;
         private System.Windows.Forms.ColumnHeader columnHeader1;
