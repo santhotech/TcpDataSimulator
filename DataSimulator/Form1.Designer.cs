@@ -58,7 +58,6 @@
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -66,6 +65,7 @@
             this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader12 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.grpList.SuspendLayout();
@@ -131,10 +131,11 @@
             this.pingRequest.AutoSize = true;
             this.pingRequest.Location = new System.Drawing.Point(92, 127);
             this.pingRequest.Name = "pingRequest";
-            this.pingRequest.Size = new System.Drawing.Size(74, 18);
+            this.pingRequest.Size = new System.Drawing.Size(124, 18);
             this.pingRequest.TabIndex = 7;
-            this.pingRequest.Text = "Use Ping";
+            this.pingRequest.Text = "Generate Multiple";
             this.pingRequest.UseVisualStyleBackColor = true;
+            this.pingRequest.Visible = false;
             // 
             // delayTxt
             // 
@@ -164,6 +165,7 @@
             this.fldrBrwsBtn.TabIndex = 5;
             this.fldrBrwsBtn.Text = "Browse";
             this.fldrBrwsBtn.UseVisualStyleBackColor = true;
+            this.fldrBrwsBtn.Click += new System.EventHandler(this.fldrBrwsBtn_Click);
             // 
             // strtBtn
             // 
@@ -303,7 +305,7 @@
             // 
             // columnHeader16
             // 
-            this.columnHeader16.Text = "Log File";
+            this.columnHeader16.Text = "Status";
             this.columnHeader16.Width = 100;
             // 
             // columnHeader17
@@ -371,6 +373,10 @@
             this.columnHeader12.Text = "";
             this.columnHeader12.Width = 80;
             // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -380,6 +386,7 @@
             this.Controls.Add(this.panel1);
             this.Name = "Form1";
             this.Text = "Data Simulator";
+            this.Closing += new System.ComponentModel.CancelEventHandler(this.Form_closing);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.panel1.ResumeLayout(false);
@@ -419,7 +426,6 @@
         private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.ColumnHeader columnHeader5;
         private System.Windows.Forms.ColumnHeader columnHeader6;
-        private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.ColumnHeader columnHeader7;
         private System.Windows.Forms.ColumnHeader columnHeader8;
@@ -430,6 +436,7 @@
         private System.Windows.Forms.ColumnHeader columnHeader15;
         private System.Windows.Forms.ColumnHeader columnHeader16;
         private System.Windows.Forms.ColumnHeader columnHeader17;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }
 

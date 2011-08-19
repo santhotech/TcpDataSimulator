@@ -7,14 +7,17 @@ using System.IO;
 
 namespace DataSimulator
 {
-    class SendDataFromFile
+    public class SendDataFromFile
     {
         bool sendFlag = false;
         TcpClientActions tca;
         private string fileName;
         private int delay;
-        public delegate void SimStatusChangedEventHandler(bool curFlag);
+        private string simName;
+
+        public delegate void SimStatusChangedEventHandler(bool curFlag, string smName);
         public event SimStatusChangedEventHandler SimStatusChanged;
+
         public bool SendFlag
         {
             get { return this.sendFlag; }
@@ -23,15 +26,16 @@ namespace DataSimulator
                 this.sendFlag = value;
                 if (SimStatusChanged != null)
                 {
-                    this.SimStatusChanged(sendFlag);
+                    this.SimStatusChanged(sendFlag,simName);
                 }
             }
         }
-        public SendDataFromFile(TcpClientActions mTcp, string mFileName, int mDelay)
+        public SendDataFromFile(TcpClientActions mTcp, string mFileName, int mDelay, string smName)
         {
             tca = mTcp;
             fileName = mFileName;
             delay = mDelay;
+            simName = smName;
         }
         Thread t;
         public void StartSendingData()
@@ -42,36 +46,42 @@ namespace DataSimulator
         public void SendData()
         {
             this.SendFlag = true;
-
-            StreamReader sr = new StreamReader(fileName);            
-            while (sendFlag)
+            try
             {
-                string read = string.Empty;
-                try
+                StreamReader sr = new StreamReader(fileName);
+                while (sendFlag)
                 {
-                    while ((read = sr.ReadLine()) != null)
+                    string read = string.Empty;
+                    try
                     {
-                        try
-                        {                            
-                            tca.SendDataToClients(read);
-                            Thread.Sleep(delay);
-                            if (sr.EndOfStream == true)
+                        while ((read = sr.ReadLine()) != null)
+                        {
+                            try
                             {
-                                sr = new StreamReader(fileName);
+                                tca.SendDataToClients(read);
+                                Thread.Sleep(delay);
+                                if (sr.EndOfStream == true)
+                                {
+                                    sr = new StreamReader(fileName);
+                                }
+                            }
+                            catch
+                            {
+                                this.SendFlag = false;
+                                break;
                             }
                         }
-                        catch
-                        {
-                            this.SendFlag = false;
-                            break;
-                        }
+                    }
+                    catch
+                    {
+                        this.SendFlag = false;
+                        break;
                     }
                 }
-                catch
-                {
-                    this.SendFlag = false;
-                    break;
-                }
+            }
+            catch
+            {
+                this.SendFlag = false;
             }
         }
         public void StopSendingData()

@@ -10,7 +10,7 @@ using System.Collections;
 
 namespace DataSimulator
 {
-    class TcpClientActions
+    public class TcpClientActions
     {
         // The actual tcp listener which opens a socket and listens for a client.
         TcpListener tcpListener;
@@ -51,6 +51,8 @@ namespace DataSimulator
         public TcpClientActions(int portNo)
         {
             prt = portNo;
+            Thread listenThread = new Thread(new ThreadStart(StartListeningForClients));
+            listenThread.Start();
         }
 
         // The method which will open a socket and listen for clients in the socket

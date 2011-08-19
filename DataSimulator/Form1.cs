@@ -64,14 +64,31 @@ namespace DataSimulator
             string fileNm = sc[3];
             int delay = Int32.Parse(sc[2]);
             TcpClientActions tca = new TcpClientActions(prt);
-            SendDataFromFile sdf = new SendDataFromFile(tca, fileNm, delay);
+            SendDataFromFile sdf = new SendDataFromFile(tca, fileNm, delay, sc[0]);
+            sdf.SimStatusChanged +=new SendDataFromFile.SimStatusChangedEventHandler(sdf_SimStatusChanged);
             AddToListView(sdf, sc);
         }
+
+        public void sdf_SimStatusChanged(bool flag, string name)
+        {            
+            if (flag == true)
+            {
+                _manifest[name].currentAction = 2;
+                SimViewActions(name, false, true, "Stop", "Active", Color.DarkGreen);
+            }
+            if (flag == false)
+            {
+                _manifest[name].currentAction = 0;
+                SimViewActions(name, true, true, "Start", "Stopped", Color.Red);
+            }
+        }
+
 
         private void AddToListView(SendDataFromFile sdf, string[] sc)
         {
             string simNm = sc[0];
-            ListViewItem itm = new ListViewItem(sc);
+            string[] scList = new string[] { sc[0], sc[1], sc[2], "Stopped" };
+            ListViewItem itm = new ListViewItem(scList);
             simList.Items.Add(itm);
             Button b = new Button();
             b.Text = "Start";
@@ -81,6 +98,7 @@ namespace DataSimulator
             b.Click += new EventHandler(b_Actions);
             int cnta = simList.Items.IndexOf(itm);
             simList.AddEmbeddedControl(b, 4, cnta);
+            simList.Items[cnta].ForeColor = Color.Red;
             _manifest.Add(simNm, new Manifest { allContents = sc, ctrlBtn = b, currentAction = 0, listIndex = itm, sdf = sdf });
         }
 
@@ -91,13 +109,38 @@ namespace DataSimulator
             SendDataFromFile sdf = _manifest[n].sdf;
             if (_manifest[n].currentAction == 2)
             {
-                sdf.StartSendingData();
+                sdf.StopSendingData();
             }
             else if (_manifest[n].currentAction == 0)
             {
-                sdf.StopSendingData();
+                sdf.StartSendingData();
             }
         }
+
+        public void Form_closing(object sender, CancelEventArgs cargs)
+        {
+            Environment.Exit(0);
+        }
+
+        private void fldrBrwsBtn_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                fldrNameTxt.Text = openFileDialog1.FileName;
+            }   
+        }
+
+        public void SimViewActions(string n, bool delBtn, bool ctrlBtn, string btnTxt, string lstTxt, Color lstColor)
+        {
+            Button b = _manifest[n].ctrlBtn;            
+            ListViewItem indexItm = _manifest[n].listIndex;
+            int index = 0;
+            simList.BeginInvoke((MethodInvoker)(() => index = simList.Items.IndexOf(indexItm)));            
+            b.BeginInvoke((MethodInvoker)(() => b.Enabled = ctrlBtn));
+            b.BeginInvoke((MethodInvoker)(() => b.Text = btnTxt));
+            simList.BeginInvoke((MethodInvoker)(() => simList.Items[index].SubItems[3].Text = lstTxt));
+            simList.BeginInvoke((MethodInvoker)(() => simList.Items[index].ForeColor = lstColor));
+        }   
       
     }
 }
