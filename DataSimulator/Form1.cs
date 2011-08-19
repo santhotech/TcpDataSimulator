@@ -51,10 +51,31 @@ namespace DataSimulator
             if (!(val.ValidateForm(sc)))
             {
                 Error("Enter all the fields");
-            }           
+            }
+            else if (!(val.CheckDuplicate(sc)))
+            {
+                Error("Name or Port already exist");
+            }
             else
-            {               
+            {
                 AddLogger(sc);
+            }
+        }
+
+        private void GenerateSims(int num)
+        {
+            int i = 0;
+            string sn = val.RandomString(7, false);
+            int prt = 9000;
+            string flName = "VMC-3Axis-Log.txt";
+            int delay = 100;
+            while (i < num)
+            {
+                sn = sn + i.ToString();
+                prt = prt + i;
+                string[] sc = new string[] { sn, prt.ToString(), delay.ToString(), flName };
+                AddLogger(sc);
+                i++;
             }
         }
 
@@ -140,7 +161,13 @@ namespace DataSimulator
             b.BeginInvoke((MethodInvoker)(() => b.Text = btnTxt));
             simList.BeginInvoke((MethodInvoker)(() => simList.Items[index].SubItems[3].Text = lstTxt));
             simList.BeginInvoke((MethodInvoker)(() => simList.Items[index].ForeColor = lstColor));
-        }   
-      
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Make sure you have a file called VMC3Axislog.txt in the same directory");
+            int num = Int32.Parse(numSim.Text);
+            GenerateSims(num);
+        }         
     }
 }
