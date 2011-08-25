@@ -27,7 +27,7 @@ namespace DataSimulator
         }
         public bool CheckDuplicate(string[] sc)
         {
-            if (al.Contains(sc[0]) || al.Contains(sc[1]))
+            if (al.Contains(sc[0]) || bl.Contains(sc[1]))
             {
                 return false;
             }
